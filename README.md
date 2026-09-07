@@ -57,26 +57,26 @@ The platform bridges **pure linear algebraic theory** with **practical ecologica
 
 ```mermaid
 graph TD
-    A[Demographic Parameters: f_i, s_i] --> B[LeslieMatrixEngine]
-    B --> C[Characteristic Polynomial & det(L - λI) = 0]
-    C --> D[Perron-Frobenius Dominant Eigendecomposition]
-    D --> E[Intrinsic Growth Rate r = ln λ1]
-    D --> F[Stable Age Distribution w1]
-    D --> G[Fisher Reproductive Value u1]
-    D --> H[Spectral Decomposition L = P D P^-1]
-    
-    H --> I[Fast Trajectory Acceleration L^k x0]
-    B --> J[Caswell Perturbation: Sensitivity & Elasticity]
-    
-    B --> K[MSY Linear Programming Optimizer]
-    K --> L[Simplex/HiGHS: Maximize c^T h subject to (I-L)x + Lh = 0]
-    
-    B --> M[Monte Carlo Stochastic Engine]
-    M --> N[Environmental Stochasticity & Catastrophe Shocks]
-    N --> O[50-Year Extinction Risk & PVA Confidence Envelopes]
-    
-    I & L & O --> P[Interactive Streamlit & Plotly 3D Visualizer]
-    I & L & O --> Q[Automated PDF / CSV / JSON Reporting Engine]
+    A["Demographic Parameters: f_i, s_i"] --> B["LeslieMatrixEngine"]
+    B --> C["Characteristic Polynomial: det(L - lI) = 0"]
+    C --> D["Perron-Frobenius Dominant Eigendecomposition"]
+    D --> E["Intrinsic Growth Rate: r = ln(lambda1)"]
+    D --> F["Stable Age Distribution: w1"]
+    D --> G["Fisher Reproductive Value: u1"]
+    D --> H["Spectral Decomposition: L = P * D * P_inv"]
+    H --> I["Fast Trajectory: L^k * x0"]
+    B --> J["Caswell Perturbation: Sensitivity and Elasticity"]
+    B --> K["MSY Linear Programming Optimizer"]
+    K --> LL["HiGHS Solver: Maximize harvest yield"]
+    B --> M["Monte Carlo Stochastic Engine"]
+    M --> N["Environmental Stochasticity and Catastrophe Shocks"]
+    N --> O["50-Year Extinction Risk and PVA Confidence Envelopes"]
+    I --> PP["Interactive Streamlit and Plotly 3D Visualizer"]
+    LL --> PP
+    O --> PP
+    I --> QQ["Automated PDF / CSV / JSON Reporting Engine"]
+    LL --> QQ
+    O --> QQ
 ```
 
 ---
