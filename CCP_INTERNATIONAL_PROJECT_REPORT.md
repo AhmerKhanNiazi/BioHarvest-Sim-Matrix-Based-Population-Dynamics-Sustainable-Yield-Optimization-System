@@ -30,19 +30,29 @@ Date: September 7, 2026
 ## LETTER OF TRANSMITTAL & ACKNOWLEDGEMENTS
 
 **To:**  
-The Faculty Review Committee & Departmental Evaluation Board  
-Course: Complex Computing Project (CCP) – Linear Algebra & Software Engineering  
+**Sir Muhammad Kashif**  
+Course Instructor – Linear Algebra & Complex Computing Project (CCP)  
+Department of Computer Science & Mathematics  
 
-**Respected Evaluators,**
+---
 
-It is with great academic pleasure that I submit this comprehensive final project technical report for **BioHarvest-Sim: Matrix-Based Population Dynamics & Sustainable Yield Optimization System**.
+**Respected Sir,**
 
-This project resolves a critical intersection between **Advanced Linear Algebra** and **Computational Bio-Economics**. By formalizing age-structured animal demographics through discrete Leslie matrices, computing asymptotic equilibria via Perron-Frobenius spectral decomposition, and optimizing commercial harvesting using modern simplex Linear Programming (HiGHS), BioHarvest-Sim transitions theoretical matrix mechanics into an interactive, enterprise-grade conservation platform.
+It is with immense respect and sincere gratitude that I humbly present this comprehensive final project technical report for the **Complex Computing Project (CCP)**: **BioHarvest-Sim: Matrix-Based Population Dynamics & Sustainable Yield Optimization System**.
 
-I express my deepest gratitude to the faculty instructors and mentors for their rigorous intellectual guidance in Matrix Theory, Spectral Analysis, and Software Life Cycle engineering. I also acknowledge the foundational academic works of P. H. Leslie (1945), Howard Anton & Chris Rorres (2013), and Hal Caswell (2001), whose seminal textbooks and monographs provided the theoretical bedrock for this project.
+This project would not have been possible without the exceptional academic guidance, intellectual mentorship, and patient teaching of **Sir Muhammad Kashif**. Your in-depth and inspiring instruction in the domain of **Advanced Linear Algebra** — particularly the concepts of Leslie Matrices, Eigendecomposition, Spectral Decomposition, and Vector Space Theory — laid the foundational cornerstone upon which this entire system was designed and built.
 
-Respectfully submitted,  
+The lectures, problem sets, and conceptual discussions you delivered throughout this course not only strengthened our mathematical rigor but also opened our minds to the real-world power of Linear Algebra as an engineering tool. The way you connected abstract matrix theory to practical computational challenges deeply motivated me to explore its application in ecological and biological domains — which became the heart of this project.
+
+I am deeply thankful for your continuous encouragement to pursue challenging, research-oriented work and for creating an academic environment where curiosity and intellectual ambition are celebrated. The standards of excellence you set have shaped my approach to every line of code, every mathematical derivation, and every design decision in this project.
+
+I also acknowledge the foundational academic works of **P. H. Leslie (1945)**, **Howard Anton & Chris Rorres (2013)**, and **Hal Caswell (2001)**, whose seminal textbooks provided the theoretical backbone for the mathematical models implemented in this system.
+
+It is my sincere hope that this work reflects the dedication, effort, and mathematical depth you have always encouraged in your students. I respectfully submit this project for your evaluation and remain open to any feedback and guidance you may offer.
+
+Yours Sincerely and Respectfully,  
 **Lead Engineering Candidate**  
+Complex Computing Project (CCP) — September 2026  
 
 ---
 
