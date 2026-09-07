@@ -22,10 +22,12 @@ env/
 *.swp
 *.swo
 
-# OS
+# OS & Office
 .DS_Store
 Thumbs.db
 desktop.ini
+~$*
+*.tmp
 
 # Jupyter
 .ipynb_checkpoints/

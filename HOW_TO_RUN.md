@@ -94,14 +94,14 @@ Jab aap evaluate hon ya project present karein, to in 4 ahem Linear Algebra topi
 
 1. **Leslie Matrix & Perron-Frobenius Theorem:**
    - Population ko age classes mein divide karke transition matrix $L$ banayi gayi hai.
-   - Perron-Frobenius theorem ki roo se dominant eigenvalue $\lambda_1 > 0$ strictly real aur spectral radius ke barabar hoti hai.
-   - $\lambda_1 > 1$ ka matlab population grow kar rahi hai, $\lambda_1 < 1$ ka matlab decline ho rahi hai (e.g. Grizzly Bear).
+   - Perron-Frobenius theorem ki roo se dominant eigenvalue λ₁ > 0 strictly real aur spectral radius ke barabar hoti hai.
+   - λ₁ > 1 ka matlab population grow kar rahi hai, λ₁ < 1 ka matlab decline ho rahi hai (e.g. Grizzly Bear).
 2. **Stable Age Distribution ($w_1$) & Fisher's Reproductive Value ($u_1$):**
-   - Dominant right eigenvector $\mathbf{v}_1$ ko normalize karke stable age distribution milti hai.
-   - Dominant left eigenvector $\mathbf{u}_1$ se reproductive value milti hai (future generation mein kis age class ka sab se zyada hissa hai).
+   - Dominant right eigenvector v₁ ko normalize karke stable age distribution milti hai.
+   - Dominant left eigenvector u₁ se reproductive value milti hai (future generation mein kis age class ka sab se zyada hissa hai).
 3. **Spectral Decomposition & Fast Trajectory:**
    - $L = P D P^{-1}$ se diagonalize karke $k$-steps trajectory $L^k = P D^k P^{-1}$ se fast calculate hoti hai.
 4. **Maximum Sustainable Yield (MSY) via Linear Programming:**
-   - Sustainable harvest find karne ke liye SciPy ka HiGHS simplex solver use kiya gaya hai jo objective function $\max \mathbf{c}^T \mathbf{h}$ ko solve karta hai subject to equilibrium condition $(L - I)\mathbf{x}^* - \mathbf{h}^* = \mathbf{0}$.
+   - Sustainable harvest find karne ke liye SciPy ka HiGHS simplex solver use kiya gaya hai jo objective function max cᵀ · h ko solve karta hai subject to equilibrium condition $(L - I)(L - I) · x* - h* = 0.
 5. **Monte Carlo PVA & Extinction Risk:**
    - Real-world environmental stochasticity aur catastrophic disasters (jaise khushksali ya bimari) ko simulate karke 50 saal ka extinction risk calculate kiya gaya hai.

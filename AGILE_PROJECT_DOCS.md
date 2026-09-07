@@ -71,7 +71,7 @@ Scenario: Rejecting invalid biological survival rates
 
 #### User Story 1.2: Perron-Frobenius Dominant Eigendecomposition
 > **As a** Quantitative Biologist,  
-> **I want to** extract the dominant eigenvalue $\lambda_1$ and right eigenvector $\mathbf{v}_1$,  
+> **I want to** extract the dominant eigenvalue λ₁ and right eigenvector v₁,  
 > **So that** I can ascertain the long-term intrinsic growth rate and asymptotic stable age distribution.
 
 ```gherkin
@@ -85,7 +85,7 @@ Scenario: Identifying the dominant spectral pair
 
 #### User Story 1.3: Maximum Sustainable Yield (MSY) Linear Program
 > **As a** Wildlife Resource Manager,  
-> **I want to** solve for the optimal stage-specific harvest vector $\mathbf{h}^*$ using linear programming,  
+> **I want to** solve for the optimal stage-specific harvest vector h* using linear programming,  
 > **So that** harvest yield is maximized without endangering population sustainability.
 
 ```gherkin
@@ -119,7 +119,7 @@ Scenario: Loading the Fin Whale preset
 #### User Story 2.2: Real-Time Parameter Sliders & Scenarios
 > **As an** Environmental Analyst,  
 > **I want to** adjust vital rates via interactive sliders,  
-> **So that** I can immediately assess the impact of environmental perturbations on $\lambda_1$.
+> **So that** I can immediately assess the impact of environmental perturbations on λ₁.
 
 ```gherkin
 Scenario: Comparing No-Harvest vs Over-Harvesting
@@ -149,7 +149,7 @@ Scenario: Rendering Plotly 3D Surface
 
 #### User Story 3.2: Complex Plane Eigen-Spectrum Visualizer
 > **As a** Linear Algebra Student,  
-> **I want to** visualize all eigenvalues relative to the complex unit circle $|\lambda| = 1$,  
+> **I want to** visualize all eigenvalues relative to the complex unit circle |λ| = 1,  
 > **So that** I can observe oscillatory modes and stability boundaries.
 
 ```gherkin
@@ -199,7 +199,7 @@ Scenario: Exporting analytical artifacts
 
 | Risk ID | Description | Severity | Likelihood | Mitigation Strategy |
 |:---:|---|:---:|:---:|---|
-| **RSK-01** | Non-primitive Leslie matrix with equal modulus eigenvalues (e.g., pure semelparous life cycles like Pacific Salmon). | High | Medium | Implemented robust root selection favoring real positive Perron-Frobenius root $\lambda_1 = \rho(L) > 0$. |
+| **RSK-01** | Non-primitive Leslie matrix with equal modulus eigenvalues (e.g., pure semelparous life cycles like Pacific Salmon). | High | Medium | Implemented robust root selection favoring real positive Perron-Frobenius root λ₁ = ρ(L) > 0. |
 | **RSK-02** | Ill-conditioned modal matrix $P$ leading to numerical instability in spectral decomposition ($L = P D P^{-1}$). | Medium | Low | Condition number check $\kappa(P) < 10^{12}$; fallback to direct matrix multiplication when defective. |
 | **RSK-03** | Unicode encoding errors on Windows terminal codepage (CP-1252). | Medium | High | Configured `sys.stdout.reconfigure(encoding='utf-8')` and clean cross-platform ASCII fallbacks. |
 | **RSK-04** | Missing external PDF binaries (e.g. wkhtmltopdf). | High | High | Utilized native `matplotlib.backends.backend_pdf.PdfPages` to ensure 100% pythonic zero-dependency PDF generation. |
