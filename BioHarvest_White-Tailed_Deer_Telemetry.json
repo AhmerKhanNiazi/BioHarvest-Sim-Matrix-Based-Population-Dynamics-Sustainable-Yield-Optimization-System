@@ -1,0 +1,131 @@
+{
+  "metadata": {
+    "system": "BioHarvest-Sim",
+    "version": "1.0.0",
+    "timestamp_utc": "2026-09-07T07:02:13.017485",
+    "species": "White-Tailed Deer"
+  },
+  "parameters": {
+    "age_classes": 6,
+    "fecundity": [
+      0.15,
+      0.85,
+      1.45,
+      1.6,
+      1.5,
+      0.9
+    ],
+    "survival": [
+      0.65,
+      0.82,
+      0.85,
+      0.8,
+      0.75
+    ],
+    "leslie_matrix": [
+      [
+        0.15,
+        0.85,
+        1.45,
+        1.6,
+        1.5,
+        0.9
+      ],
+      [
+        0.65,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.82,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.85,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.8,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.75,
+        0.0
+      ]
+    ]
+  },
+  "spectral_analysis": {
+    "dominant_eigenvalue": 1.3967,
+    "intrinsic_growth_rate": 0.33411,
+    "net_reproductive_rate": 2.98854,
+    "generation_time": 3.28,
+    "damping_ratio": 1.8433,
+    "is_primitive": true,
+    "is_diagonalizable": true,
+    "stable_age_distribution": [
+      0.48750131670279323,
+      0.22687534559737682,
+      0.13319849278707385,
+      0.08106182751615605,
+      0.04643062522451832,
+      0.024932392172081687
+    ],
+    "reproductive_values": [
+      1.0,
+      1.9179936302599063,
+      2.2303094661651297,
+      1.9588988202038522,
+      1.4199823396113602,
+      0.6443779393842615
+    ]
+  },
+  "harvesting_invariants": {
+    "uniform_sustainable_harvest_pct": 28.4
+  },
+  "msy_optimization": {
+    "success": true,
+    "total_yield": 1901.1189944346047,
+    "economic_value": 2672.030083431647,
+    "optimal_stock": [
+      2389.9923848867634,
+      1553.4950501763965,
+      636.9329705723226,
+      270.6965124932371,
+      108.27860499729485,
+      40.60447687398557
+    ],
+    "optimal_harvest": [
+      844.6064294977646,
+      0.0,
+      636.9329705723226,
+      270.6965124932371,
+      108.27860499729485,
+      40.60447687398557
+    ]
+  },
+  "monte_carlo_risk": {
+    "iterations": 200,
+    "extinction_risk_probability": 0.005,
+    "quasi_extinction_threshold": 154.0,
+    "mean_time_to_extinction": 22.0
+  }
+}

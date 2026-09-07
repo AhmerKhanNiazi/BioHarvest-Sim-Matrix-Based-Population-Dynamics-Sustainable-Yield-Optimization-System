@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "system": "BioHarvest-Sim",
+    "version": "1.0.0",
+    "timestamp_utc": "2026-09-07T07:02:11.132099",
+    "species": "Pacific Salmon"
+  },
+  "parameters": {
+    "age_classes": 4,
+    "fecundity": [
+      0.0,
+      0.0,
+      0.0,
+      2400.0
+    ],
+    "survival": [
+      0.002,
+      0.45,
+      0.65
+    ],
+    "leslie_matrix": [
+      [
+        0.0,
+        0.0,
+        0.0,
+        2400.0
+      ],
+      [
+        0.002,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.45,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.65,
+        0.0
+      ]
+    ]
+  },
+  "spectral_analysis": {
+    "dominant_eigenvalue": 1.08853,
+    "intrinsic_growth_rate": 0.08483,
+    "net_reproductive_rate": 1.404,
+    "generation_time": 4.0,
+    "damping_ratio": 1.0,
+    "is_primitive": false,
+    "is_diagonalizable": true,
+    "stable_age_distribution": [
+      0.9969588323338117,
+      0.0018317468103535596,
+      0.0007572445926496609,
+      0.00045217626318515356
+    ],
+    "reproductive_values": [
+      1.0,
+      544.2667221794594,
+      1316.5611772087668,
+      2204.801342978908
+    ]
+  },
+  "harvesting_invariants": {
+    "uniform_sustainable_harvest_pct": 8.13
+  },
+  "msy_optimization": {
+    "success": true,
+    "total_yield": 33.5553746739979,
+    "economic_value": 134.2214986959916,
+    "optimal_stock": [
+      199338.85944949253,
+      398.67771889898506,
+      179.40497350454328,
+      83.05785810395523
+    ],
+    "optimal_harvest": [
+      0.0,
+      0.0,
+      0.0,
+      33.5553746739979
+    ]
+  },
+  "monte_carlo_risk": {
+    "iterations": 200,
+    "extinction_risk_probability": 0.035,
+    "quasi_extinction_threshold": 10035.0,
+    "mean_time_to_extinction": 21.142857142857142
+  }
+}
