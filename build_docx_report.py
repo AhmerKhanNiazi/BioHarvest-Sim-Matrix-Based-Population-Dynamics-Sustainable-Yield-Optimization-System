@@ -154,6 +154,50 @@ def set_cell_margins(cell, top=120, bottom=120, left=160, right=160):
     tcPr.append(tcMar)
 
 
+# ── Figure path map: figure caption keyword → PNG filename ───────────────────
+_CCP_DIR = os.path.dirname(os.path.abspath(__file__))
+_FIG_DIR = os.path.join(_CCP_DIR, 'figures')
+
+FIGURE_MAP = {
+    'Figure 1.1': 'fig_1_1_architecture.png',
+    'Figure 2.1': 'fig_2_1_leslie_matrix.png',
+    'Figure 2.2': 'fig_2_2_eigen_spectrum.png',
+    'Figure 2.3': 'fig_2_3_yield_curve.png',
+    'Figure 3.1': 'fig_3_1_module_diagram.png',
+    'Figure 4.1': 'fig_4_1_trajectories.png',
+    'Figure 4.2': 'fig_4_2_3d_surface.png',
+    'Figure 4.3': 'fig_4_3_phase_portrait.png',
+    'Figure 4.4': 'fig_4_4_monte_carlo.png',
+}
+
+
+def insert_figure(doc, fig_key: str, caption_text: str):
+    """Embed a figure PNG into the document with a centered caption below it."""
+    img_path = os.path.join(_FIG_DIR, FIGURE_MAP.get(fig_key, ''))
+    if not os.path.isfile(img_path):
+        return  # Skip silently if image not generated yet
+
+    # Insert image centered
+    p_img = doc.add_paragraph()
+    p_img.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    run = p_img.add_run()
+    run.add_picture(img_path, width=Inches(6.0))
+    p_img.paragraph_format.space_before = Pt(6)
+    p_img.paragraph_format.space_after  = Pt(2)
+
+    # Caption below image: italic, centered, smaller font
+    p_cap = doc.add_paragraph()
+    p_cap.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    cap_run = p_cap.add_run(caption_text)
+    cap_run.font.name   = 'Times New Roman'
+    cap_run.font.size   = Pt(10)
+    cap_run.font.italic = True
+    cap_run.font.bold   = False
+    cap_run.font.color.rgb = RGBColor(0x44, 0x44, 0x44)
+    p_cap.paragraph_format.space_before = Pt(0)
+    p_cap.paragraph_format.space_after  = Pt(12)
+
+
 def build_docx_report(md_path: str, docx_path: str):
     doc = Document()
 
@@ -370,6 +414,32 @@ def build_docx_report(md_path: str, docx_path: str):
                     r = p.add_run(pt)
                     r.font.name = "Times New Roman"
                     r.font.size = Pt(12)
+        elif stripped.startswith("![") and "](" in stripped and stripped.endswith(")"):
+            # Markdown Image: ![Caption](image_path)
+            caption_end = stripped.find("](")
+            caption_text = clean_math_text(stripped[2:caption_end].strip())
+            rel_path = stripped[caption_end + 2:-1].strip()
+
+            img_path = os.path.normpath(os.path.join(os.path.dirname(md_path), rel_path))
+            if os.path.isfile(img_path):
+                p_img = doc.add_paragraph()
+                p_img.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                p_img.paragraph_format.space_before = Pt(8)
+                p_img.paragraph_format.space_after = Pt(2)
+                run = p_img.add_run()
+                run.add_picture(img_path, width=Inches(6.0))
+
+                p_cap = doc.add_paragraph()
+                p_cap.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                p_cap.paragraph_format.space_before = Pt(0)
+                p_cap.paragraph_format.space_after = Pt(14)
+                cap_run = p_cap.add_run(caption_text)
+                cap_run.font.name = "Times New Roman"
+                cap_run.font.size = Pt(10)
+                cap_run.font.italic = True
+                cap_run.font.color.rgb = RGBColor(0x4B, 0x55, 0x63)
+            else:
+                print(f"[WARN] Image file not found: {img_path}")
         else:
             # Regular paragraph
             clean_para = clean_math_text(stripped)

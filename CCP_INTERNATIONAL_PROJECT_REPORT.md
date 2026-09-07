@@ -223,6 +223,8 @@ The system was architected and developed under strict international engineering 
 
 ---
 
+![Figure 1.1: System Architecture and Data Pipeline Flowchart](figures/fig_1_1_architecture.png)
+
 # CHAPTER 2: THEORETICAL & MATHEMATICAL FOUNDATIONS
 
 ## 2.1 The Discrete-Time Leslie Matrix Formulation
@@ -267,6 +269,8 @@ L = [   0     0    s₃   ...     0     0  ]
 
 Notice that L is a non-negative sparse matrix (all L_ij ≥ 0) with non-zero entries restricted exclusively to the first row (fecundities) and the first subdiagonal (survival transitions).
 
+![Figure 2.1: Structure of an N × N Leslie Transition Matrix](figures/fig_2_1_leslie_matrix.png)
+
 ## 2.2 The Perron-Frobenius Theorem & Asymptotic Invariants
 The long-term asymptotic behavior of the linear system x(k+1) = L · x(k) is governed entirely by the spectrum of eigenvalues of L:
 ```
@@ -309,6 +313,8 @@ w₁ = v₁ / (v₁,₁ + v₁,₂ + ... + v₁,ₙ)
 
 Limit as k → ∞ of [ x(k) / (Total Population at k) ] = w₁
 ```
+
+![Figure 2.2: Complex Plane Eigen-Spectrum with Unit Circle Stability Boundary (|λ| = 1)](figures/fig_2_2_eigen_spectrum.png)
 
 ## 2.3 The Euler-Lotka Characteristic Equation & Net Reproductive Rate (R₀)
 Expanding det(λ · I - L) = 0 directly along the first row yields the characteristic polynomial:
@@ -492,6 +498,8 @@ x* ≥ 0,   h* ≥ 0
 
 BioHarvest-Sim solves this linear program using `scipy.optimize.linprog(method='highs')`, which employs modern dual-simplex and interior-point algorithms to find the globally optimal, mathematically guaranteed equilibrium solution.
 
+![Figure 2.3: Sustainable Yield (Y) vs. Uniform Harvest Fraction (h) Characteristic Curve](figures/fig_2_3_yield_curve.png)
+
 ## 2.10 Stochastic Modeling: Monte Carlo Population Viability Analysis (PVA)
 Deterministic models assume constant environmental parameters. In nature, annual weather oscillations, forage variability, droughts, and epizootic diseases induce random perturbations in vital rates. 
 
@@ -554,6 +562,8 @@ CCP/
 └── run_tests.bat            # One-Click Windows Launcher for Automated Unit Tests
 ```
 
+![Figure 3.1: Software Module Dependency and Interaction Diagram](figures/fig_3_1_module_diagram.png)
+
 ## 3.2 High-Performance Technology Stack
 The technology stack was selected to achieve optimal numerical performance, mathematical rigor, and visual elegance:
 - **Python 3.11+:** Modern runtime with enhanced exception tracing, optimized bytecode execution, and full type hinting.
@@ -582,6 +592,32 @@ To demonstrate the mathematical generality of BioHarvest-Sim, the system was emp
   At a carrying capacity K = 2500, the HiGHS optimizer allocated the optimal sustainable annual harvest quota of **190.58 whales/year**. Crucially, the solver allocated zero harvest (h_i = 0) to juvenile age classes 1 through 8, concentrating extraction exclusively on mature adult classes 9 through 12. This validates classical bio-economic theory: harvesting should spare pre-reproductive juveniles to maximize long-term yield.
 - **Extinction Risk:** Under 15% environmental variance and 4% catastrophe probability, the 50-year quasi-extinction risk is **8.5%**.
 
+
+**Table 4.1: Fin Whale Demographic Vital Rates (N = 12)**
+
+| Age Class | Cohort Label | Fecundity (f_i) | Survival Rate (s_i) | Initial Stock x_i(0) | Economic Weight (c_i) |
+|:---:|---|:---:|:---:|:---:|:---:|
+| 1 | 0–1 yr (Calf) | 0.000 | 0.920 | 120 | 0.50 |
+| 2 | 1–2 yr (Juvenile 1) | 0.000 | 0.940 | 110 | 0.70 |
+| 3 | 2–3 yr (Juvenile 2) | 0.000 | 0.940 | 100 | 0.80 |
+| 4 | 3–4 yr (Subadult 1) | 0.000 | 0.940 | 95 | 0.90 |
+| 5 | 4–5 yr (Subadult 2) | 0.000 | 0.940 | 90 | 1.00 |
+| 6 | 5–6 yr (First Breeding) | 0.190 | 0.940 | 85 | 1.20 |
+| 7 | 6–7 yr (Young Adult) | 0.440 | 0.940 | 80 | 1.50 |
+| 8 | 7–8 yr (Mature Adult 1) | 0.500 | 0.940 | 75 | 1.60 |
+| 9 | 8–9 yr (Mature Adult 2) | 0.500 | 0.940 | 70 | 1.60 |
+| 10 | 9–10 yr (Prime Adult) | 0.450 | 0.940 | 65 | 1.50 |
+| 11 | 10–11 yr (Senior Adult) | 0.300 | 0.900 | 60 | 1.40 |
+| 12 | 11+ yr (Senescent Adult) | 0.100 | — | 50 | 1.20 |
+
+![Figure 4.1: Population Trajectories Across Harvesting Scenarios for the Fin Whale](figures/fig_4_1_trajectories.png)
+
+![Figure 4.2: 3D Population Surface: Time vs. Age Class vs. Abundance](figures/fig_4_2_3d_surface.png)
+
+![Figure 4.3: Phase Space Portrait: Juvenile Recruitment vs. Adult Reproductive Stock](figures/fig_4_3_phase_portrait.png)
+
+![Figure 4.4: Monte Carlo Stochastic Fan Chart with 5th, 25th, 50th, 75th, and 95th Percentiles](figures/fig_4_4_monte_carlo.png)
+
 ## 4.2 Case Study 2: Pacific Salmon (Oncorhynchus spp.)
 - **Demographic Characteristics:** An extreme semelparous life history (N = 4 age classes). Fry experience massive early mortality (s₁ = 0.002), ocean subadults survive at moderate rates (s₂ = 0.45, s₃ = 0.65), and reproduction is concentrated entirely into terminal Class 4 (f₄ = 2400.0), after which adults die.
 - **Demographic Metrics:**
@@ -594,6 +630,16 @@ To demonstrate the mathematical generality of BioHarvest-Sim, the system was emp
 - **MSY Linear Programming Optimization:**
   At carrying capacity K = 200,000, the optimal annual MSY yield is **33.56 spawning adults/year**, targeting strictly the terminal spawning class (h₄ = 33.6, h₁ = h₂ = h₃ = 0).
 - **Extinction Risk:** 50-year extinction probability is **3.5%**.
+
+
+**Table 4.2: Pacific Salmon Demographic Vital Rates (N = 4)**
+
+| Age Class | Life History Stage | Fecundity (f_i) | Survival Rate (s_i) | Initial Stock x_i(0) | Economic Weight (c_i) |
+|:---:|---|:---:|:---:|:---:|:---:|
+| 1 | Fry / Egg (Age 0) | 0.0 | 0.002 | 100,000 | 0.00 |
+| 2 | Parr / Smolt (Age 1) | 0.0 | 0.450 | 200 | 0.10 |
+| 3 | Ocean Subadult (Age 2) | 0.0 | 0.650 | 90 | 1.50 |
+| 4 | Spawning Adult (Age 3) | 2400.0 | — (Death post-spawn) | 60 | 4.00 |
 
 ## 4.3 Case Study 3: White-Tailed Deer (Odocoileus virginianus)
 - **Demographic Characteristics:** A highly productive, managed game ungulate (N = 6 age classes). Characterized by rapid maturation (reproduction begins in Yearling Class 2), frequent twin births (f₃ = 1.45, f₄ = 1.60), and moderate survival (s_i in [0.65, 0.85]).
@@ -608,6 +654,18 @@ To demonstrate the mathematical generality of BioHarvest-Sim, the system was emp
   At K = 5000, the population generates an immense annual harvest yield of **1,901.12 deer/year**, reflecting high biological turnover and high reproductive resilience.
 - **Extinction Risk:** Extremely resilient; 50-year extinction probability is **0.5%**.
 
+
+**Table 4.3: White-Tailed Deer Demographic Vital Rates (N = 6)**
+
+| Age Class | Cohort Label | Fecundity (f_i) | Survival Rate (s_i) | Initial Stock x_i(0) | Economic Weight (c_i) |
+|:---:|---|:---:|:---:|:---:|:---:|
+| 1 | Fawn (0–1 yr) | 0.150 | 0.650 | 450 | 0.50 |
+| 2 | Yearling (1–2 yr) | 0.850 | 0.820 | 320 | 1.00 |
+| 3 | Prime Adult (2–3 yr) | 1.450 | 0.850 | 280 | 2.00 |
+| 4 | Mature (3–4 yr) | 1.600 | 0.800 | 220 | 2.50 |
+| 5 | Senior (4–5 yr) | 1.500 | 0.750 | 160 | 2.20 |
+| 6 | Senescent (5+ yr) | 0.900 | — | 110 | 1.50 |
+
 ## 4.4 Case Study 4: Grizzly Bear (Ursus arctos horribilis)
 - **Demographic Characteristics:** A vulnerable K-selected apex carnivore (N = 8 age classes). Females reproduce only every 3–4 years, generating small litters (f₄ = 0.10, f₅ = 0.35, f₆ = 0.58).
 - **Demographic Metrics:**
@@ -619,6 +677,20 @@ To demonstrate the mathematical generality of BioHarvest-Sim, the system was emp
 - **MSY Linear Programming Optimization:**
   Because λ₁ < 1.0, the HiGHS optimizer correctly determined that the population possesses **zero surplus biological yield**. The optimal sustainable harvest vector is h* = 0. Any commercial harvesting accelerates extinction.
 - **Extinction Risk:** In the absence of conservation intervention, the 50-year extinction probability is **100.0%**.
+
+
+**Table 4.4: Grizzly Bear Demographic Vital Rates (N = 8)**
+
+| Age Class | Life Stage | Fecundity (f_i) | Survival Rate (s_i) | Initial Stock x_i(0) | Economic Weight (c_i) |
+|:---:|---|:---:|:---:|:---:|:---:|
+| 1 | Cubs (0–1 yr) | 0.000 | 0.680 | 40 | 0.00 |
+| 2 | Yearlings (1–2 yr) | 0.000 | 0.820 | 30 | 0.50 |
+| 3 | Subadult 1 (2–3 yr) | 0.000 | 0.880 | 25 | 1.00 |
+| 4 | Subadult 2 (3–4 yr) | 0.100 | 0.900 | 22 | 1.50 |
+| 5 | Young Adult (4–6 yr) | 0.350 | 0.920 | 35 | 2.50 |
+| 6 | Prime Adult (6–10 yr) | 0.580 | 0.940 | 50 | 3.00 |
+| 7 | Mature Adult (10–15 yr) | 0.450 | 0.900 | 45 | 2.50 |
+| 8 | Elder (15+ yr) | 0.150 | — | 20 | 1.00 |
 
 ## 4.5 Comparative Demographic Summary Table
 
@@ -650,6 +722,29 @@ The suite encompasses 17 comprehensive unit test methods categorized into six co
 5. **Harvesting Equilibrium Equations:** Proves (1 - h*) · L · w₁ = w₁ and verifies non-negativity across uniform, proportional, and quota harvesting.
 6. **MSY Linear Programming:** Validates that the HiGHS solver strictly satisfies (L - I) · x* - h* = 0, enforces juvenile protections, and respects carrying capacity constraints.
 7. **Monte Carlo PVA & Export Verification:** Tests percentile monotonicity (p₅ ≤ p₂₅ ≤ p₅₀ ≤ p₇₅ ≤ p₉₅) and physical creation of PDF, CSV, and JSON artifacts.
+
+
+**Table 5.1: Automated Unit Test Suite Verification Matrix (17 Test Cases)**
+
+| Test ID | Test Class | Tested Method / Property | Acceptance Criterion | Result |
+|:---:|---|---|---|:---:|
+| TC-01 | TestLeslieMatrixEngine | 	est_matrix_structure | N×N shape, positive entries, subdiagonal survival | PASS |
+| TC-02 | TestLeslieMatrixEngine | 	est_validation_constraints | Rejects negative fecundity & survival not in [0,1] | PASS |
+| TC-03 | TestLeslieMatrixEngine | 	est_perron_frobenius_properties | Dominant λ₁ > 0, v₁ > 0, L·v₁ = λ₁·v₁, Lᵀ·u₁ = λ₁·u₁ | PASS |
+| TC-04 | TestLeslieMatrixEngine | 	est_spectral_decomposition_acceleration | P·Dᵏ·P⁻¹·x₀ matches iterative multiplication Lᵏ·x₀ | PASS |
+| TC-05 | TestLeslieMatrixEngine | 	est_net_reproductive_rate_and_demographics | R₀ matches sum(l_i·f_i), T_c > 0, damping ratio ρ ≥ 1 | PASS |
+| TC-06 | TestLeslieMatrixEngine | 	est_elasticity_matrix_sums_to_one | Caswell elasticity sum(E_ij) = 1.0000 ± 1e-6 | PASS |
+| TC-07 | TestHarvestingStrategies | 	est_uniform_sustainable_equilibrium | (1 - h*)·L has dominant eigenvalue = 1.0000 | PASS |
+| TC-08 | TestHarvestingStrategies | 	est_uniform_harvest_simulation | Population non-negative; matches stationary vector at h* | PASS |
+| TC-09 | TestHarvestingStrategies | 	est_proportional_harvest_simulation | Stage-specific harvest matrix H produces valid trajectory | PASS |
+| TC-10 | TestHarvestingStrategies | 	est_equilibrium_quota_solver | Equilibrium quota satisfies (L - I)·x* = h* | PASS |
+| TC-11 | TestMSYOptimizer | 	est_msy_linear_program_post_reproduction | HiGHS solver finds optimal cᵀ·h* under (L-I)x* - h* = 0 | PASS |
+| TC-12 | TestMSYOptimizer | 	est_msy_with_protected_juveniles | Enforces h_i* = 0 for protected juvenile classes | PASS |
+| TC-13 | TestMSYOptimizer | 	est_yield_curve_generation | Characteristic parabolic curve Y(h) with unique peak | PASS |
+| TC-14 | TestMonteCarloViability | 	est_stochastic_simulation_bounds_and_percentiles | Monotonic percentiles (p5 ≤ p25 ≤ p50 ≤ p75 ≤ p95) | PASS |
+| TC-15 | TestPresetsIntegrity | 	est_all_presets_valid | All 4 presets instantiate without numerical errors | PASS |
+| TC-16 | TestExporter | 	est_csv_and_pdf_generation | Multi-page PDF (PdfPages) & CSV files created on disk | PASS |
+| TC-17 | TestExporter | 	est_json_telemetry_export | JSON schema valid with spectral and MSY metrics | PASS |
 
 ## 5.2 Unit Test Execution Logs
 The test suite was executed in the workspace environment using Python 3.11:
@@ -686,6 +781,18 @@ To prevent runtime crashes in production, the engine implements defensive numeri
 - **Non-Negativity Clipping:** Biological populations cannot assume negative values. All simulation trajectories apply max(x_t, 0) at each time step.
 
 ---
+
+
+**Table 5.2: ISO/IEC 27001 Software Quality & Security Risk Mitigation Matrix**
+
+| Risk Domain | Potential Vulnerability / Failure Mode | Technical Mitigation in BioHarvest-Sim | Standard Control | Residual Risk |
+|---|---|---|---|:---:|
+| Numerical Stability | Near-singular modal matrix P (κ(P) > 10¹²) | Automatic condition monitoring; fallback to matrix power | ISO 12207 §7.1 | LOW |
+| Input Integrity | Negative fecundity, invalid survival p > 1.0 | Strict defensive schema validation raising ValueError | ISO 27001 §A.14.1 | NEGLIGIBLE |
+| Physical Bounds | Negative population abundance in stochastic PVA | Elementwise non-negativity clipping max(x, 0) | ISO 12207 §7.2 | ZERO |
+| Reproducibility | Non-deterministic Monte Carlo trajectories | Fixed seed pseudo-random number generator (seed=42) | ISO 27001 §A.12.1 | ZERO |
+| Algorithmic Correctness | Cyclic matrix imprimitivity (multiple max roots) | Real-part filtering of Perron-Frobenius root | ISO 12207 §7.1 | LOW |
+| Resource Safety | Out-of-memory on large simulation horizons | NumPy vectorized matrix broadcasting; O(n) acceleration | ISO 27001 §A.12.1 | LOW |
 
 # CHAPTER 6: GRAPHICAL USER INTERFACE & VISUAL ANALYTICS
 
